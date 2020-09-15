@@ -1,2 +1,5 @@
-// tied to https://data.midwestbahai.org
-export const MAPBOX_TOKEN = 'pk.eyJ1IjoibmVvbGVmdHkiLCJhIjoiY2tjaThiczlxMHZjNTJwcGE0MmdlNGw2cCJ9.tddrlBIw_-8TFsNO-FlNyA'
+export const GetEnvConfig = (): EnvConfig => window.config
+
+export class Config {
+    public static readonly mapboxKey = GetEnvConfig().MAPBOX_TOKEN
+}
