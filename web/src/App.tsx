@@ -1,9 +1,10 @@
 import {createStyles, makeStyles} from "@material-ui/styles"
 import mapboxgl from "mapbox-gl"
-import MapGL, {GeolocateControl, ViewportProps, ViewState} from "react-map-gl"
+import MapGL, {GeolocateControl, Marker, ViewportProps, ViewState} from "react-map-gl"
 import React, {useEffect, useRef, useState} from 'react'
 import {Config} from "./Config"
 import ReactMapGl from 'react-map-gl'
+import {useDevotions, WithDevotions} from "./WithDevotions"
 
 const useStyles = makeStyles(createStyles({
     parent: {
@@ -33,23 +34,33 @@ export const App = () => {
     const classes = useStyles()
     const [viewState, setViewState] = useState<ViewState>(INITIAL_VIEW)
     return (
-        <ReactMapGl
-            width='100vw'
-            height='100vh'
-            mapboxApiAccessToken={Config.mapboxKey}
-            onViewportChange={viewState => setViewState(viewState)}
-            viewState={viewState}
-            mapStyle='mapbox://styles/mapbox/dark-v10'
-        />
+        <WithDevotions>
+            <ReactMapGl
+                width='100vw'
+                height='100vh'
+                mapboxApiAccessToken={Config.mapboxToken}
+                onViewportChange={viewState => setViewState(viewState)}
+                viewState={viewState}
+                mapStyle={Config.mapboxStyleUrl || 'mapbox://styles/mapbox/dark-v10'}
+            >
+                <DevotionsMarkers/>
+            </ReactMapGl>
+        </WithDevotions>
     )
+}
+
+export const DevotionsMarkers = () => {
+    const descriptions = useDevotions()
+    useEffect(() => console.log('Devotions Descriptions', descriptions), [descriptions])
+    return null
 }
 
 // export const App = () => {
 //     const classes = useStyles()
-//     useEffect(() => console.log(Config.mapboxKey), [])
+//     useEffect(() => console.log(Config.mapboxToken), [])
 //     return (
 //         <MapGL
-//             mapboxApiAccessToken={Config.mapboxKey}
+//             mapboxApiAccessToken={Config.mapboxToken}
 //             className={classes.parent}
 //             width='100vw'
 //             height='100vh'
@@ -67,7 +78,7 @@ export const App = () => {
 //     useEffect(() => {
 //         if (parentRef.current && !map) {
 //             const map = new mapboxgl.Map({
-//                 accessToken: Config.mapboxKey,
+//                 accessToken: Config.mapboxToken,
 //                 container: parentRef.current,
 //                 bounds: [mapLL, mapUR],
 //             })

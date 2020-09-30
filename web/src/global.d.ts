@@ -6,6 +6,7 @@ export declare global {
     }
 
     interface EnvConfig {
-        MAPBOX_TOKEN: string,
+        mapboxToken: string,
+        mapboxStyleUrl: string,
     }
 }
