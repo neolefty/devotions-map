@@ -22,10 +22,10 @@
     "env:prod": "cpy --rename=config.js static/config-prod.js public",
     "env:initial": "cpy --rename=config.js --no-overwrite static/config-local.js public",
     "download": "cd ../data/spreadsheet && ./download.sh && cd ../../web",
-    "data": "csvtojson ../data/spreadsheet/devotions.csv > public/devotions.json",
+    "data": "yarn download && csvtojson ../data/spreadsheet/devotions.csv > public/devotions.json",
     "clean": "rm public/config.js",
-    "start": "yarn env:initial && yarn data && react-scripts start",
-    "build": "yarn env:prod && yarn data && react-scripts build",
+    "start": "yarn env:initial && react-scripts start",
+    "build": "yarn env:prod && react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },
