@@ -1,23 +1,22 @@
-import {createStyles, makeStyles} from "@material-ui/styles"
-import mapboxgl from "mapbox-gl"
-import MapGL, {GeolocateControl, Marker, ViewportProps, ViewState} from "react-map-gl"
-import React, {useEffect, useRef, useState} from 'react'
+import React, {useContext, useRef, useState} from 'react'
+import InteractiveMap from "react-map-gl"
+import ReactMapGl, {ViewState} from "react-map-gl"
 import {Config} from "./Config"
-import ReactMapGl from 'react-map-gl'
-import {useDevotions, WithDevotions} from "./WithDevotions"
+import {DevotionsMarkers} from "./DevotionsMarkers"
+import {WithDevotions} from "./WithDevotions"
 
-const useStyles = makeStyles(createStyles({
-    parent: {
-        position: 'absolute',
-        top: 0,
-        right: 0,
-        left: 0,
-        bottom: 0,
-        // width: '100vw',
-        // height: '100vh',
-        backgroundColor: '#ff0',
-    }
-}))
+// const useStyles = makeStyles(createStyles({
+//     parent: {
+//         position: 'absolute',
+//         top: 0,
+//         right: 0,
+//         left: 0,
+//         bottom: 0,
+//         // width: '100vw',
+//         // height: '100vh',
+//         backgroundColor: '#ff0',
+//     }
+// }))
 
 // from the UP to Southern IN to Eastern OH
 const mapLL = {lat: 37.75, lng: -90.45}
@@ -30,9 +29,13 @@ const INITIAL_VIEW: ViewState = { // could also be ViewportProps
     zoom: 6,
 }
 
+const MapContext = React.createContext<InteractiveMap | undefined>(undefined)
+export const useMap = () => useContext(MapContext)
+
 export const App = () => {
-    const classes = useStyles()
+    // const classes = useStyles()
     const [viewState, setViewState] = useState<ViewState>(INITIAL_VIEW)
+    const mapRef = useRef<InteractiveMap>(null)
     return (
         <WithDevotions>
             <ReactMapGl
@@ -42,17 +45,14 @@ export const App = () => {
                 onViewportChange={viewState => setViewState(viewState)}
                 viewState={viewState}
                 mapStyle={Config.mapboxStyleUrl || 'mapbox://styles/mapbox/dark-v10'}
+                ref={mapRef}
             >
-                <DevotionsMarkers/>
+                <MapContext.Provider value={mapRef.current ?? undefined}>
+                    <DevotionsMarkers/>
+                </MapContext.Provider>
             </ReactMapGl>
         </WithDevotions>
     )
-}
-
-export const DevotionsMarkers = () => {
-    const descriptions = useDevotions()
-    useEffect(() => console.log('Devotions Descriptions', descriptions), [descriptions])
-    return null
 }
 
 // export const App = () => {
