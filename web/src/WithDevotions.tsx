@@ -1,4 +1,4 @@
-import React, {PropsWithChildren, useContext, useEffect, useState} from "react"
+import React, {PropsWithChildren, useEffect, useState} from "react"
 import {DEVOTIONS_DESCRIPTION_PLACEHOLDER, DevotionsDescription} from "./DevotionsDescription"
 
 // undefined if not loaded; empty array if load failed
@@ -44,5 +44,3 @@ export const WithDevotions = (props: PropsWithChildren<{}>) => {
         </DevotionsContext.Provider>
     )
 }
-
-export const useDevotions = () => useContext(DevotionsContext)
