@@ -1,5 +1,5 @@
 import {createStyles, makeStyles} from "@material-ui/styles"
-import React, {useCallback, useMemo, useState} from "react"
+import React, {useCallback, useEffect, useMemo, useState} from "react"
 import {Popup} from "react-map-gl"
 import {useMap} from "./App"
 import {AtLeastOne} from "./AtLeastOne"
@@ -26,9 +26,7 @@ const useStyles = makeStyles(createStyles({
 
 const byZip = (description: DevotionsDescription) => description.zip
 
-
-// TODO aggregate
-// TODO add hover popup
+// TODO aggregate when zoomed out
 // TODO when zoomed in enough, show popup anyway
 export const DevotionsMarkers = () => {
     const classes = useStyles()
@@ -49,6 +47,11 @@ export const DevotionsMarkers = () => {
         })
     }, [bounds, groups])
 
+    useEffect(() => {
+        if (visibleGroups.length === 1)
+            setSelection(visibleGroups[0])
+    }, [visibleGroups, setSelection])
+
     return (
         <>
             {visibleGroups?.map((descriptions, i) =>
@@ -67,6 +70,7 @@ export const DevotionsMarkers = () => {
                     offsetTop={0} offsetLeft={0}
                     closeButton={false}
                     onClose={handleClearSelection}
+                    closeOnClick={true}
                     className={classes.popup}
                 >
                     <div className='head'>
@@ -83,4 +87,3 @@ export const DevotionsMarkers = () => {
         </>
     )
 }
-
