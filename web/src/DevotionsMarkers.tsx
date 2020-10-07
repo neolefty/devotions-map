@@ -7,6 +7,8 @@ import {DevotionsDescription} from "./DevotionsDescription"
 import {DevotionsMarker} from "./DevotionsMarker"
 import {useDevotionsAggregate} from "./useDevotions"
 
+const showParticipantCount = false
+
 const useStyles = makeStyles(createStyles({
     flame: {
         height: 50,
@@ -14,6 +16,7 @@ const useStyles = makeStyles(createStyles({
     },
     popup: {
         '& .head': {
+            marginTop: '0.2rem',
             fontWeight: 'bold',
             marginBottom: '0.4rem',
         },
@@ -75,11 +78,14 @@ export const DevotionsMarkers = () => {
                 >
                     <div className='head'>
                         Zip: {selection[0].zip}
-                        {selection.length > 1 &&
+                        {showParticipantCount && selection.length > 1 &&
                             ` — ${selection.length} gatherings`
                         }
                     </div>
-                    {selection.map((description, i) =>
+                    {!showParticipantCount &&
+                        <div>{selection.length} gathering{selection.length === 1 ? '' : 's'}</div>
+                    }
+                    {showParticipantCount && selection.map((description, i) =>
                         <div key={i}>{description.description}</div>
                     )}
                 </Popup>
