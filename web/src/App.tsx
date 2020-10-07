@@ -19,14 +19,20 @@ import {WithDevotions} from "./WithDevotions"
 // }))
 
 // from the UP to Southern IN to Eastern OH
-const mapLL = {lat: 37.75, lng: -90.45}
-const mapUR = {lat: 47.5, lng: -80}
+const regionSW = {lat: 37.75, lng: -90.45}
+const regionNE = {lat: 47.5, lng: -80}
 const mid = (a: number, b: number) => 0.5 * (a + b)
 
+const paddingLat = 2 // degrees latitude
+const paddingLng = 4 // degrees longitude
+
+const mapSW = {lat: regionSW.lat - paddingLat, lng: regionSW.lng - paddingLng}
+const mapNE = {lat: regionNE.lat + paddingLat, lng: regionNE.lng + paddingLng}
+
 const INITIAL_VIEW: ViewState = { // could also be ViewportProps
-    latitude: mid(mapLL.lat, mapUR.lat),
-    longitude: mid(mapLL.lng, mapUR.lng),
-    zoom: 6,
+    latitude: mid(regionSW.lat, regionNE.lat),
+    longitude: mid(regionSW.lng, regionNE.lng),
+    zoom: 5.5,
 }
 
 const MapContext = React.createContext<InteractiveMap | undefined>(undefined)
