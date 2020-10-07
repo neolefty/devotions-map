@@ -52,6 +52,7 @@ export const App = () => {
                 viewState={viewState}
                 mapStyle={Config.mapboxStyleUrl || 'mapbox://styles/mapbox/dark-v10'}
                 ref={mapRef}
+                maxZoom={10}
             >
                 <MapContext.Provider value={mapRef.current ?? undefined}>
                     <DevotionsMarkers/>

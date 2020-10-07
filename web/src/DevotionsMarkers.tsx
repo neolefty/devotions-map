@@ -74,7 +74,7 @@ export const DevotionsMarkers = () => {
                     className={classes.popup}
                 >
                     <div className='head'>
-                        {selection[0].zip}
+                        Zip: {selection[0].zip}
                         {selection.length > 1 &&
                             ` — ${selection.length} gatherings`
                         }
