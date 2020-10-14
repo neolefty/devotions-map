@@ -1,8 +1,10 @@
+import {createStyles, makeStyles} from "@material-ui/styles"
 import React, {useContext, useRef, useState} from 'react'
 import InteractiveMap from "react-map-gl"
 import ReactMapGl, {ViewState} from "react-map-gl"
 import {Config} from "./Config"
 import {DevotionsMarkers} from "./DevotionsMarkers"
+import {FloatQuote} from "./FloatQuote"
 import {WithDevotions} from "./WithDevotions"
 
 // from the UP to Southern IN to Eastern OH
@@ -25,25 +27,43 @@ const INITIAL_VIEW: ViewState = { // could also be ViewportProps
 const MapContext = React.createContext<InteractiveMap | undefined>(undefined)
 export const useMap = () => useContext(MapContext)
 
+const useStyles = makeStyles(createStyles({
+    attribute: {
+        paddingRight: '1vmax',
+        fontStyle: 'normal',
+        textAlign: 'right',
+        marginTop: '0.3vmax',
+    },
+}))
+
 export const App = () => {
     const [viewState, setViewState] = useState<ViewState>(INITIAL_VIEW)
     const mapRef = useRef<InteractiveMap>(null)
+    const classes = useStyles()
     return (
-        <WithDevotions>
-            <ReactMapGl
-                width='100vw'
-                height='100vh'
-                mapboxApiAccessToken={Config.mapboxToken}
-                onViewportChange={viewState => setViewState(viewState)}
-                viewState={viewState}
-                mapStyle={Config.mapboxStyleUrl || 'mapbox://styles/mapbox/dark-v10'}
-                ref={mapRef}
-                maxZoom={10}
-            >
-                <MapContext.Provider value={mapRef.current ?? undefined}>
-                    <DevotionsMarkers/>
-                </MapContext.Provider>
-            </ReactMapGl>
-        </WithDevotions>
+        <>
+            <WithDevotions>
+                <ReactMapGl
+                    width='100vw'
+                    height='100vh'
+                    mapboxApiAccessToken={Config.mapboxToken}
+                    onViewportChange={viewState => setViewState(viewState)}
+                    viewState={viewState}
+                    mapStyle={Config.mapboxStyleUrl || 'mapbox://styles/mapbox/dark-v10'}
+                    ref={mapRef}
+                    maxZoom={10}
+                >
+                    <MapContext.Provider value={mapRef.current ?? undefined}>
+                        <DevotionsMarkers/>
+                    </MapContext.Provider>
+                </ReactMapGl>
+            </WithDevotions>
+            <FloatQuote>
+                &ldquo;Let the flame of the love of God burn brightly within your radiant hearts.&rdquo;
+                <div className={classes.attribute}>
+                    <a href="">Bahá&rsquo;u&rsquo;lláh</a>
+                </div>
+            </FloatQuote>
+        </>
     )
 }

@@ -11,6 +11,7 @@ const showParticipantCount = false
 
 const useStyles = makeStyles(createStyles({
     popup: {
+        color: 'black',
         '& .head': {
             marginTop: '0.2rem',
             fontWeight: 'bold',

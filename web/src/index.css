@@ -5,6 +5,14 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  color: rgb(244,224,0);
+}
+
+a {
+  color: #E17A2D;
+}
+a:hover {
+  color: white;
 }
 
 code {
