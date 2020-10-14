@@ -61,7 +61,7 @@ export const App = () => {
             <FloatQuote>
                 &ldquo;Let the flame of the love of God burn brightly within your radiant hearts.&rdquo;
                 <div className={classes.attribute}>
-                    <a href="">Bahá&rsquo;u&rsquo;lláh</a>
+                    <a href="https://www.bahai.org/r/413529355">Bahá&rsquo;u&rsquo;lláh</a>
                 </div>
             </FloatQuote>
         </>
