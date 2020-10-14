@@ -10,8 +10,8 @@ const regionSW = {lat: 37.75, lng: -90.45}
 const regionNE = {lat: 47.5, lng: -80}
 const mid = (a: number, b: number) => 0.5 * (a + b)
 
-const paddingLat = 2 // degrees latitude
-const paddingLng = 4 // degrees longitude
+// const paddingLat = 2 // degrees latitude
+// const paddingLng = 4 // degrees longitude
 
 // const mapSW = {lat: regionSW.lat - paddingLat, lng: regionSW.lng - paddingLng}
 // const mapNE = {lat: regionNE.lat + paddingLat, lng: regionNE.lng + paddingLng}

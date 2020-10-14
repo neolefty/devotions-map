@@ -10,10 +10,6 @@ import {useDevotionsAggregate} from "./useDevotions"
 const showParticipantCount = false
 
 const useStyles = makeStyles(createStyles({
-    flame: {
-        height: 50,
-        width: 35,
-    },
     popup: {
         '& .head': {
             marginTop: '0.2rem',
@@ -60,7 +56,6 @@ export const DevotionsMarkers = () => {
             {visibleGroups?.map((descriptions, i) =>
                 <DevotionsMarker
                     key={i}
-                    className={classes.flame}
                     descriptions={descriptions}
                     selection={selection}
                     setSelection={setSelection}
