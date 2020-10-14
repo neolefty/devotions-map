@@ -5,6 +5,7 @@ import ReactMapGl, {ViewState} from "react-map-gl"
 import {Config} from "./Config"
 import {DevotionsMarkers} from "./DevotionsMarkers"
 import {FloatQuote} from "./FloatQuote"
+import {LastUpdated} from "./LastUpdated"
 import {WithDevotions} from "./WithDevotions"
 
 // from the UP to Southern IN to Eastern OH
@@ -64,6 +65,9 @@ export const App = () => {
                     <a href="https://www.bahai.org/r/413529355">Bahá&rsquo;u&rsquo;lláh</a>
                 </div>
             </FloatQuote>
+            <LastUpdated>
+                Last updated 10/4/2020 — <a href="https://midwestbahai.org/devotions-points-of-light-draft/#form">add yours with this form</a>.
+            </LastUpdated>
         </>
     )
 }
