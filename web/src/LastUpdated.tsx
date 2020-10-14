@@ -8,7 +8,7 @@ const useStyles = makeStyles(createStyles({
         position: 'fixed',
         bottom: '20px',
         right: 0,
-        maxWidth: '20vw',
+        // maxWidth: '20vw',
         fontSize: '14px',
         padding: '5px',
     }
