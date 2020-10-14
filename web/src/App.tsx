@@ -66,7 +66,7 @@ export const App = () => {
                 </div>
             </FloatQuote>
             <LastUpdated>
-                Last updated 10/4/2020 — <a href="https://midwestbahai.org/devotions-points-of-light-draft/#form">add yours with this form</a>.
+                Updated 10/4/2020 — <a href="https://midwestbahai.org/devotions-points-of-light-draft/#form">add yours here</a>
             </LastUpdated>
         </>
     )

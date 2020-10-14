@@ -9,7 +9,7 @@ const useStyles = makeStyles(createStyles({
         bottom: '20px',
         right: 0,
         maxWidth: '35vw',
-        fontSize: '14px',
+        fontSize: '17px',
         padding: '5px',
     }
 }))
