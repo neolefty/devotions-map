@@ -3,7 +3,6 @@ import React, {PropsWithChildren} from "react"
 
 const useStyles = makeStyles(createStyles({
     float: {
-        color: 'rgb(244, 224, 40)',
         background: 'rgba(30, 40, 120, 0.4)',
         border: '0.3vmax solid rgba(45, 60, 180, 0.5)',
         position: 'fixed',
