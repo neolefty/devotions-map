@@ -1,6 +1,6 @@
 {
-  "short_name": "React App",
-  "name": "Create React App Sample",
+  "short_name": "Devotions Map",
+  "name": "Map of Devotional Gatherings in MI, IN, and OH",
   "icons": [
     {
       "src": "favicon.ico",
