@@ -29,7 +29,9 @@
     "build": "yarn env:prod && react-scripts build",
     "build-local": "yarn env:local && react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "geocode": "node scripts/geocode.js",
+    "tmp": "scripts/tmp.sh"
   },
   "eslintConfig": {
     "extends": "react-app"
