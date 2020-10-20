@@ -8,5 +8,9 @@ export declare global {
     interface EnvConfig {
         mapboxToken: string,
         mapboxStyleUrl: string,
+        region: {
+            sw: {lat: number, lng: number},
+            ne: {lat: number, lng: number},
+        }
     }
 }
