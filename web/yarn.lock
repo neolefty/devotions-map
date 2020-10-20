@@ -3884,6 +3884,11 @@ decode-uri-component@^0.2.0:
   resolved "https://registry.yarnpkg.com/decode-uri-component/-/decode-uri-component-0.2.0.tgz#eb3913333458775cb84cd1a1fae062106bb87545"
   integrity sha1-6zkTMzRYd1y4TNGh+uBiEGu4dUU=
 
+deeks@2.2.7:
+  version "2.2.7"
+  resolved "https://registry.yarnpkg.com/deeks/-/deeks-2.2.7.tgz#91e711cdd434e0f12ddc194836569e2a3db383ad"
+  integrity sha512-pCKFxSqyY2LAQ3qKQ+y+wOG63Bb9uDmDiHUVnrTR10AP75BVo2QMlgm36G+oPpRDPrgAiw5p9d+lAxdsqOwOyA==
+
 deep-equal@^1.0.1:
   version "1.1.1"
   resolved "https://registry.yarnpkg.com/deep-equal/-/deep-equal-1.1.1.tgz#b5c98c942ceffaf7cb051e24e1434a25a2e6076a"
@@ -4045,6 +4050,11 @@ dns-txt@^2.0.2:
   integrity sha1-uR2Ab10nGI5Ks+fRB9iBocxGQrY=
   dependencies:
     buffer-indexof "^1.0.0"
+
+doc-path@2.1.2:
+  version "2.1.2"
+  resolved "https://registry.yarnpkg.com/doc-path/-/doc-path-2.1.2.tgz#08344d188619a6ff7c6631e462362dd720e4e81f"
+  integrity sha512-saM17czrIb4jYLsS5728OKbCa/WQ3xVctkGiMixOHz3X1VYsRn/Q5xPMxE1A5WN+XHHLWak34mMMjmAKRgMLeA==
 
 doctrine@1.5.0:
   version "1.5.0"
@@ -6681,6 +6691,14 @@ jsesc@~0.5.0:
   version "0.5.0"
   resolved "https://registry.yarnpkg.com/jsesc/-/jsesc-0.5.0.tgz#e7dee66e35d6fc16f710fe91d5cf69f70f08911d"
   integrity sha1-597mbjXW/Bb3EP6R1c9p9w8IkR0=
+
+json-2-csv@^3.7.8:
+  version "3.7.8"
+  resolved "https://registry.yarnpkg.com/json-2-csv/-/json-2-csv-3.7.8.tgz#d7663bfe6e022387c5a2db0f57745eb84aa19f06"
+  integrity sha512-2CDoU32s/RA9a9xPRVsLDgk7UMW5u2SzrdklsNDl8tmdHUWT7JN2+eUV1hn1TuxJyrJxQjEXM5K4kTTnpY5+Pw==
+  dependencies:
+    deeks "2.2.7"
+    doc-path "2.1.2"
 
 json-parse-better-errors@^1.0.1, json-parse-better-errors@^1.0.2:
   version "1.0.2"
