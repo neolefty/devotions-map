@@ -10,7 +10,9 @@ const useStyles = makeStyles(createStyles({
         right: 0,
         maxWidth: '35vw',
         fontSize: '17px',
-        padding: '5px',
+        padding: '1px 10px 4px 10px',
+        textAlign: 'right',
+        lineHeight: '200%',
     }
 }))
 
