@@ -59,12 +59,6 @@ const lookupZips = async (json) => {
     console.log(Array.from(geoMap.values()))
 }
 
-// TODO
-// 1. extract city, state name — maybe remove '<zip>, United States')' from the end?
-// 2. save results and don't re-geocode the same zip again?
-// 3. save resulting CSV for use in the map
-// 4. set initial zoom based on window size
-
 // zips: Map<zip, {zip, lat, lng, place}>
 // importData: [{zip, lat?, lng?, description}]
 const fillInZips = async (zips, importData) => {
