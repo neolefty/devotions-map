@@ -1,11 +1,13 @@
 import {createStyles, makeStyles} from "@material-ui/styles"
-import React, {useContext, useRef, useState} from 'react'
+import {format} from "date-fns"
+import React, {useContext, useEffect, useRef, useState} from 'react'
 import InteractiveMap from "react-map-gl"
 import ReactMapGl, {ViewState} from "react-map-gl"
 import {Config} from "./Config"
 import {DevotionsMarkers} from "./DevotionsMarkers"
 import {FloatQuote} from "./FloatQuote"
 import {LastUpdated} from "./LastUpdated"
+import {useDevotions} from "./useDevotions"
 import {WithDevotions} from "./WithDevotions"
 
 const mid = (a: number, b: number) => 0.5 * (a + b)
@@ -39,6 +41,7 @@ export const App = () => {
     const [viewState, setViewState] = useState<ViewState>(INITIAL_VIEW)
     const mapRef = useRef<InteractiveMap>(null)
     const classes = useStyles()
+    const [latest, setLatest] = useState<Date | undefined>()
     return (
         <>
             <WithDevotions>
@@ -56,6 +59,7 @@ export const App = () => {
                         <DevotionsMarkers/>
                     </MapContext.Provider>
                 </ReactMapGl>
+                <GetLatest setLatest={setLatest}/>
             </WithDevotions>
             <FloatQuote>
                 &ldquo;Let the flame of the love of God burn brightly within your radiant hearts.&rdquo;
@@ -65,8 +69,31 @@ export const App = () => {
             </FloatQuote>
             <LastUpdated>
                 <p>Flames represent households<br/>with <a href="https://www.bahai.org/action/devotional-life/">devotional gatherings</a>.</p>
-                <p>Updated 10/20/2020 — <a href="https://midwestbahai.org/devotions-points-of-light/#form">add yours here</a>.</p>
+                <p>
+                    {latest &&
+                        <span>Updated {format(latest, 'M/d/yyyy')} — </span>
+                    }
+                    <a href="https://midwestbahai.org/devotions-points-of-light/#form">add yours here</a>.
+                </p>
             </LastUpdated>
         </>
     )
+}
+
+interface GetLatestProps {
+    setLatest: (latest: Date) => void
+}
+const GetLatest = ({setLatest}: GetLatestProps) => {
+    const descriptions = useDevotions()
+    useEffect(() => {
+        if (descriptions) {
+            const latest = descriptions.reduce((soFar, description) =>
+                    description.timestamp.getTime() > soFar.getTime() ? description.timestamp : soFar,
+                new Date(0)
+            )
+            if (latest)
+                setLatest(latest)
+        }
+    }, [setLatest, descriptions])
+    return <></>
 }
