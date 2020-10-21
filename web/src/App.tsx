@@ -31,6 +31,10 @@ const useStyles = makeStyles(createStyles({
     },
 }))
 
+// TODO
+// 1. set initial zoom based on window size
+// 2. update date each time
+
 export const App = () => {
     const [viewState, setViewState] = useState<ViewState>(INITIAL_VIEW)
     const mapRef = useRef<InteractiveMap>(null)
