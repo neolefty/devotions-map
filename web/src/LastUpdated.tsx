@@ -13,6 +13,7 @@ const useStyles = makeStyles(createStyles({
         padding: '0.5rem',
         textAlign: 'right',
         lineHeight: '120%',
+        borderRadius: '0.3rem',
         '& p': {
             margin: '0 0 0.8rem 0',
             '&:last-child': {
