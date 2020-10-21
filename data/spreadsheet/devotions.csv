@@ -31,6 +31,7 @@ zip,lng,lat,place,city,description
 48423,-83.52,43.03,"Davison, Michigan 48423, United States","Davison, Michigan",4 individuals Weekly
 43209,-82.94,39.95,"Columbus, Ohio 43209, United States","Columbus, Ohio",6 individuals weekly on Fridays at 6:00pm
 44902,-82.52,40.76,"Mansfield, Ohio 44902, United States","Mansfield, Ohio",3 individuals Once month
+46947,-86.33,40.76,"Logansport, Indiana 46947, United States","Logansport, Indiana",0 individuals Monthly
 44118,-81.53,41.49,"Cleveland, Ohio 44118, United States","Cleveland, Ohio",6 individuals Every other week
 46807,-85.14,41.05,"Fort Wayne, Indiana 46807, United States","Fort Wayne, Indiana",4 individuals weekely
 46032,-86.13,40,"Carmel, Indiana 46032, United States","Carmel, Indiana","2 individuals once a week, Thursdays"
@@ -113,3 +114,15 @@ zip,lng,lat,place,city,description
 48911,-84.54,42.66,"Lansing, Michigan 48911, United States","Lansing, Michigan",8 individuals Every other week
 48864,-84.46,42.72,"Okemos, Michigan 48864, United States","Okemos, Michigan",4 individuals Weekly
 48823,-84.47,42.73,"East Lansing, Michigan 48823, United States","East Lansing, Michigan",15 individuals monthly
+48808,-84.47,42.8,"Bath, Michigan 48808, United States","Bath, Michigan",40 individuals weekly
+48823,-84.47,42.73,"East Lansing, Michigan 48823, United States","East Lansing, Michigan",15 individuals monthly
+45133,-83.61,39.2,"Hillsboro, Ohio 45133, United States","Hillsboro, Ohio",2 individuals Monthly
+43551,-83.6,41.55,"Perrysburg, Ohio 43551, United States","Perrysburg, Ohio",6 individuals Weekly
+43420,-83.12,41.35,"Fremont, Ohio 43420, United States","Fremont, Ohio",10 individuals Monthly
+43230,-82.87,40.02,"Columbus, Ohio 43230, United States","Columbus, Ohio",5 individuals Weekly
+43230,-82.87,40.02,"Columbus, Ohio 43230, United States","Columbus, Ohio",16 individuals Weekly
+45619,-82.48,38.42,"Chesapeake, West Virginia 45619, United States","Chesapeake, West Virginia",4 individuals 4-6 weeks
+44202,-81.35,41.32,"Aurora, Ohio 44202, United States","Aurora, Ohio",5 individuals Daily
+49855,-87.41,46.56,"Marquette, Michigan 49855, United States","Marquette, Michigan",4 individuals Biweekly
+47250,-85.38,38.78,"Madison, Indiana 47250, United States","Madison, Indiana",3 individuals Biweekly
+48197,-83.62,42.25,"Ypsilanti, Michigan 48197, United States","Ypsilanti, Michigan",2 individuals Daily
