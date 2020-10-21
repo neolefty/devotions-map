@@ -10,9 +10,15 @@ const useStyles = makeStyles(createStyles({
         right: 0,
         maxWidth: '35vw',
         fontSize: '17px',
-        padding: '1px 10px 4px 10px',
+        padding: '0.5rem',
         textAlign: 'right',
-        lineHeight: '200%',
+        lineHeight: '120%',
+        '& p': {
+            margin: '0 0 0.8rem 0',
+            '&:last-child': {
+                margin: 0,
+            }
+        },
     }
 }))
 

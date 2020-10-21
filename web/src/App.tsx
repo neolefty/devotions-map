@@ -60,10 +60,10 @@ export const App = () => {
                 </div>
             </FloatQuote>
             <LastUpdated>
-                <div>Flames represent <a href="https://www.bahai.org/action/devotional-life/">household devotions</a></div>
-                <div>
-                    Updated 10/4/2020 — <a href="https://midwestbahai.org/devotions-points-of-light/#form">add yours here</a>
-                </div>
+                <p>Flames represent <a href="https://www.bahai.org/action/devotional-life/">households<br/>with devotional gatherings</a></p>
+                <p>
+                    Updated 10/14/2020 — <a href="https://midwestbahai.org/devotions-points-of-light/#form">add yours here</a>
+                </p>
             </LastUpdated>
         </>
     )
