@@ -9,7 +9,12 @@ export const DevotionsContext = React.createContext<DevotionsState>([DEVOTIONS_D
 // Loads right away when app loads — so should still be online?
 // TODO retry on failure?
 export const loadDevotions = async (): Promise<DevotionsState> => {
-    const response = await fetch('/devotions.json')
+    const response = await fetch('/devotions.json', {
+        headers: {
+            pragma: 'no-cache',
+            'cache-control': 'no-cache',
+        }
+    })
     const json = await response.json()
     if (Array.isArray(json)) {
         const result: DevotionsDescription[] = []
