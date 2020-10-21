@@ -113,9 +113,9 @@ const prepareExport = async (zips, importData) => {
             // place is like "East Lansing, Michigan 48823, United States"
             const zipLocation = zips.get(zip)
             result.push({
+                ...importRecord,
                 ...zipLocation,
                 city: cityStateFromPlace(zipLocation.place, zip),
-                description: importRecord.description,
             })
         }
     })

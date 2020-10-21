@@ -1,10 +1,23 @@
+import {parse} from 'date-fns'
+
 interface DevotionsDescriptionJson {
     zip: string
     lat: string
     lng: string
     description: string
     city: string
-    place: string // "Ann Arbor, Michigan 48101,
+    place: string
+    timestamp: string
+}
+
+const JSON_PLACEHOLDER: DevotionsDescriptionJson = {
+    zip: '12345',
+    lat: '45',
+    lng: '-85',
+    description: 'Fake Devotions Description',
+    city: 'City, State',
+    place: 'City, State 12345, United States',
+    timestamp: '6/14/2020 22:42:10',
 }
 
 export class DevotionsDescription {
@@ -29,6 +42,13 @@ export class DevotionsDescription {
         if (this._lng === undefined)
             this._lng = Number.parseFloat(this.json.lng)
         return this._lng
+    }
+
+    private _timestamp?: Date
+    get timestamp(): Date {
+        if (this._timestamp === undefined)
+            this._timestamp = parse(this.json.timestamp, 'M/d/yyyy H:mm:ss', new Date())
+        return this._timestamp
     }
 
     get isBlank(): boolean {
@@ -56,11 +76,4 @@ export class DevotionsDescription {
 }
 
 export const DEVOTIONS_DESCRIPTION_PLACEHOLDER: DevotionsDescription =
-    new DevotionsDescription({
-        zip: '12345',
-        lat: '30',
-        lng: '30',
-        description: 'Fake Devotions Description',
-        city: 'City, State',
-        place: 'City, State 12345, United States',
-    })
+    new DevotionsDescription(JSON_PLACEHOLDER)
