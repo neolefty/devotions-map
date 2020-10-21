@@ -92,7 +92,6 @@ zip,lng,lat,place,city,description
 43078,-83.75,40.11,"Urbana, Ohio 43078, United States","Urbana, Ohio",5 individuals monthly
 43072,-83.96,40.13,"Saint Paris, Ohio 43072, United States","Saint Paris, Ohio",5 individuals monthly
 43078,-83.75,40.11,"Urbana, Ohio 43078, United States","Urbana, Ohio",5 individuals monthly
-47906,-86.92,40.43,"West Lafayette, Indiana 47906, United States","West Lafayette, Indiana",3 individuals weekly
 44870,-82.68,41.48,"Sandusky, Ohio 44870, United States","Sandusky, Ohio",12 individuals weekly
 44839,-82.64,41.38,"Huron, Ohio 44839, United States","Huron, Ohio",2 individuals weekly
 44839,-82.64,41.38,"Huron, Ohio 44839, United States","Huron, Ohio",2 individuals Daily
@@ -126,3 +125,4 @@ zip,lng,lat,place,city,description
 49855,-87.41,46.56,"Marquette, Michigan 49855, United States","Marquette, Michigan",4 individuals Biweekly
 47250,-85.38,38.78,"Madison, Indiana 47250, United States","Madison, Indiana",3 individuals Biweekly
 48197,-83.62,42.25,"Ypsilanti, Michigan 48197, United States","Ypsilanti, Michigan",2 individuals Daily
+45133,-83.61,39.2,"Hillsboro, Ohio 45133, United States","Hillsboro, Ohio",7 individuals Monthly
