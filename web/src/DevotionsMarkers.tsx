@@ -13,14 +13,14 @@ const useStyles = makeStyles(createStyles({
     popup: {
         color: 'black',
         '& .head': {
-            marginTop: '0.2rem',
+            margin: '0.2rem 0.5rem 0 0.5rem',
             fontWeight: 'bold',
-            marginBottom: '0.4rem',
+            fontSize: '110%'
         },
         '& div': {
             maxWidth: '50vw',
             textAlign: 'center',
-            lineHeight: '150%',
+            lineHeight: '160%',
         },
     },
 }))
