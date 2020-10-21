@@ -14,6 +14,7 @@ const useStyles = makeStyles(createStyles({
         padding: '0.5vmax',
         fontFamily: 'georgia',
         fontStyle: 'italic',
+        borderRadius: '0.5rem',
     },
 }))
 

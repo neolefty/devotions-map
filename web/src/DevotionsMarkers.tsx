@@ -20,6 +20,7 @@ const useStyles = makeStyles(createStyles({
         '& div': {
             maxWidth: '50vw',
             textAlign: 'center',
+            lineHeight: '150%',
         },
     },
 }))
@@ -73,7 +74,7 @@ export const DevotionsMarkers = () => {
                     className={classes.popup}
                 >
                     <div className='head'>
-                        Zip: {selection[0].zip}
+                        {selection[0].city}
                         {showParticipantCount && selection.length > 1 &&
                             ` — ${selection.length} gatherings`
                         }
@@ -84,6 +85,7 @@ export const DevotionsMarkers = () => {
                     {showParticipantCount && selection.map((description, i) =>
                         <div key={i}>{description.description}</div>
                     )}
+                    <div>Zip: {selection[0].zip}</div>
                 </Popup>
             }
         </>

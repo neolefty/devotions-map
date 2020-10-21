@@ -3,14 +3,15 @@ interface DevotionsDescriptionJson {
     lat: string
     lng: string
     description: string
+    city: string
+    place: string // "Ann Arbor, Michigan 48101,
 }
 
 export class DevotionsDescription {
     constructor(readonly json: DevotionsDescriptionJson) {}
 
-    get zip(): string {
-        return this.json.zip
-    }
+    get zip(): string {return this.json.zip}
+    get city(): string {return this.json.city}
 
     get description(): string {
         return this.json.description
@@ -56,8 +57,10 @@ export class DevotionsDescription {
 
 export const DEVOTIONS_DESCRIPTION_PLACEHOLDER: DevotionsDescription =
     new DevotionsDescription({
-        zip: '1',
-        lat: '0',
-        lng: '0',
+        zip: '12345',
+        lat: '30',
+        lng: '30',
         description: 'Fake Devotions Description',
+        city: 'City, State',
+        place: 'City, State 12345, United States',
     })
