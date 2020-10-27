@@ -11,6 +11,7 @@
 # production
 /build
 /deploy
+/beta
 
 # misc
 .DS_Store
