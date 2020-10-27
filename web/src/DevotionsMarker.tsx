@@ -41,8 +41,8 @@ export const DevotionsMarker = (
                 onClick={handleSelect}
                 rings={[
                     // {valleyRadius: 0.1, pointRadius: 0.2, strokeWidth: 0.05, stroke: "rgba(250,220,30,0.4)"}, // width/height 120
-                    {pointRadius: 1, valleyRadius: 0.5, fill: "rgba(250,220,30,0.7)"},
-                    {pointRadius: 0.7, valleyRadius: 0.25, fill: "rgba(225, 122, 45,0.9)"},
+                    {pointRadius: 1, valleyRadius: 0.7, fill: "rgba(250,220,30,0.7)"},
+                    {pointRadius: 0.7, valleyRadius: 0.4, fill: "rgba(225, 122, 45,0.9)"},
                 ]}
             />
             {/*<Flame style={style} className={className} ref={ref} onClick={handleSelect}/>*/}
