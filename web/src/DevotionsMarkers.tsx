@@ -76,11 +76,11 @@ export const DevotionsMarkers = () => {
                     <div className='head'>
                         {selection[0].city}
                         {showParticipantCount && selection.length > 1 &&
-                            ` — ${selection.length} gatherings`
+                            ` — ${selection.length} households`
                         }
                     </div>
                     {!showParticipantCount &&
-                        <div>{selection.length} gathering{selection.length === 1 ? '' : 's'}</div>
+                        <div>{selection.length} household{selection.length === 1 ? '' : 's'}</div>
                     }
                     {showParticipantCount && selection.map((description, i) =>
                         <div key={i}>{description.description}</div>
