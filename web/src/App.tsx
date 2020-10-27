@@ -68,7 +68,7 @@ export const App = () => {
                 </div>
             </FloatQuote>
             <LastUpdated>
-                <p>Flames represent households<br/>with <a href="https://www.bahai.org/action/devotional-life/">devotional gatherings</a>.</p>
+                <p>Stars represent households<br/>with <a href="https://www.bahai.org/action/devotional-life/">devotional gatherings</a>.</p>
                 <p>
                     {latest &&
                         <span>Updated {format(latest, 'M/d/yyyy')} — </span>

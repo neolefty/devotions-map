@@ -67,7 +67,7 @@ export const DevotionsMarkers = () => {
                 <Popup
                     anchor="bottom"
                     latitude={selection[0].lat} longitude={selection[0].lng}
-                    offsetTop={0} offsetLeft={0}
+                    offsetTop={-15} offsetLeft={0}
                     closeButton={false}
                     onClose={handleClearSelection}
                     closeOnClick={true}
