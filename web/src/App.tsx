@@ -53,7 +53,7 @@ export const App = () => {
                     viewState={viewState}
                     mapStyle={Config.mapboxStyleUrl || 'mapbox://styles/mapbox/dark-v10'}
                     ref={mapRef}
-                    maxZoom={10}
+                    maxZoom={11}
                 >
                     <MapContext.Provider value={mapRef.current ?? undefined}>
                         <DevotionsMarkers/>
@@ -68,7 +68,7 @@ export const App = () => {
                 </div>
             </FloatQuote>
             <LastUpdated>
-                <p>Stars represent households<br/>with <a href="https://www.bahai.org/action/devotional-life/">devotional gatherings</a>.</p>
+                <p>Stars represent households with <a href="https://www.bahai.org/action/devotional-life/">devotional gatherings</a>.</p>
                 <p>
                     {latest &&
                         <span>Updated {format(latest, 'M/d/yyyy')} — </span>

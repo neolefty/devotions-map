@@ -13,8 +13,8 @@ interface DevotionsMarkerProps {
     setSelection: (description?: AtLeastOne<DevotionsDescription>) => void
 }
 
-const WIDTH_BASE = 30
-const HEIGHT_BASE = 30
+const WIDTH_BASE = 25
+const HEIGHT_BASE = 25
 
 export const DevotionsMarker = (
     {className, descriptions, selection, setSelection}: DevotionsMarkerProps
