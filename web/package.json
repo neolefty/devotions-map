@@ -30,6 +30,7 @@
     "start": "yarn env:initial && react-scripts start",
     "build": "yarn data && yarn env:prod && react-scripts build",
     "deploy": "yarn build && cd build && cpy --parents '**' ../deploy && cd ..",
+    "beta": "yarn build && cd build && cpy --parents '**' ../beta && cd ..",
     "build-local": "yarn env:local && react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
