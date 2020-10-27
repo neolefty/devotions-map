@@ -28,7 +28,6 @@ const useStyles = makeStyles(createStyles({
 const byZip = (description: DevotionsDescription) => description.zip
 
 // TODO aggregate when zoomed out
-// TODO when zoomed in enough, show popup anyway
 export const DevotionsMarkers = () => {
     const classes = useStyles()
 
