@@ -1,7 +1,7 @@
 import {createStyles, makeStyles} from "@material-ui/styles"
 import React, {PropsWithChildren} from "react"
 
-const useStyles = makeStyles(createStyles({
+const useStyles = makeStyles(theme => createStyles({
     float: {
         background: 'rgba(30, 40, 120, 0.8)',
         border: '1px solid rgba(45, 60, 180, 0.7)',
@@ -23,7 +23,7 @@ const useStyles = makeStyles(createStyles({
     }
 }))
 
-export const LastUpdated = (props: PropsWithChildren<{}>) => {
+export const FloatKey = (props: PropsWithChildren<{}>) => {
     const classes = useStyles()
     return (
         <div className={classes.float}>{props.children}</div>
