@@ -35,7 +35,9 @@ const useStyles = makeStyles(createStyles({
 
 // TODO
 // 1. set initial zoom based on window size
-// 2. update date each time
+// 3. chevron on Quote box to show / hide explanation
+// 4. try out https://www.dafont.com/linux-libertine.font for quote
+// 5. marker clustering
 
 export const App = () => {
     const [viewState, setViewState] = useState<ViewState>(INITIAL_VIEW)
