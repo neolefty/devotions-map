@@ -6,7 +6,7 @@ import ReactMapGl, {ViewState} from "react-map-gl"
 import {Config} from "./Config"
 import {DevotionsMarkers} from "./DevotionsMarkers"
 import {FloatQuote} from "./FloatQuote"
-import {LastUpdated} from "./LastUpdated"
+import {FloatKey} from "./FloatKey"
 import {useDevotions} from "./useDevotions"
 import {WithDevotions} from "./WithDevotions"
 
@@ -60,6 +60,9 @@ export const App = () => {
                     </MapContext.Provider>
                 </ReactMapGl>
                 <GetLatest setLatest={setLatest}/>
+                <FloatKey>
+                    <LastUpdated latest={latest}/>
+                </FloatKey>
             </WithDevotions>
             <FloatQuote>
                 &ldquo;Let the flame of the love of God burn brightly within your radiant hearts.&rdquo;
@@ -67,15 +70,28 @@ export const App = () => {
                     <a href="https://www.bahai.org/r/413529355">Bahá&rsquo;u&rsquo;lláh</a>
                 </div>
             </FloatQuote>
-            <LastUpdated>
-                <p>Stars represent households with <a href="https://www.bahai.org/action/devotional-life/">devotional gatherings</a>.</p>
-                <p>
-                    {latest &&
-                        <span>Updated {format(latest, 'M/d/yyyy')} — </span>
-                    }
-                    <a href="https://midwestbahai.org/devotions-points-of-light/#form">add yours here</a>.
-                </p>
-            </LastUpdated>
+        </>
+    )
+}
+
+interface LastUpdatedProps {
+    latest?: Date
+}
+
+const LastUpdated = (props: LastUpdatedProps) => {
+    const devotions = useDevotions()
+    return (
+        <>
+            <p>Stars represent {devotions?.length} households<br/>with <a href="https://www.bahai.org/action/devotional-life/">devotional gatherings</a></p>
+            <p>
+                {props.latest &&
+                    <>
+                        <span>Most recent: {format(props.latest, 'M/d/yyyy')}</span>
+                        <br/>
+                    </>
+                }
+                <a href="https://midwestbahai.org/devotions-points-of-light/#form">Add yours here</a>
+            </p>
         </>
     )
 }
