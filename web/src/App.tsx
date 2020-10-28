@@ -2,7 +2,7 @@ import {createStyles, makeStyles} from "@material-ui/styles"
 import {format} from "date-fns"
 import React, {useContext, useEffect, useRef, useState} from 'react'
 import InteractiveMap from "react-map-gl"
-import ReactMapGl, {ViewState} from "react-map-gl"
+import ReactMapGl, {ViewState as MapViewState} from "react-map-gl"
 import {Config} from "./Config"
 import {DevotionsMarkers} from "./DevotionsMarkers"
 import {FloatQuote} from "./FloatQuote"
@@ -15,7 +15,7 @@ const mid = (a: number, b: number) => 0.5 * (a + b)
 // const paddingLat = 2 // degrees latitude
 // const paddingLng = 4 // degrees longitude
 
-const INITIAL_VIEW: ViewState = { // could also be ViewportProps
+const INITIAL_VIEW: MapViewState = { // could also be ViewportProps
     latitude: mid(Config.region.sw.lat, Config.region.ne.lat),
     longitude: mid(Config.region.sw.lng, Config.region.ne.lng),
     zoom: 6,
@@ -26,10 +26,10 @@ export const useMap = () => useContext(MapContext)
 
 const useStyles = makeStyles(createStyles({
     attribute: {
-        paddingRight: '1vmax',
+        paddingRight: '1vmin',
         fontStyle: 'normal',
         textAlign: 'right',
-        marginTop: '0.3vmax',
+        marginTop: '0.3vmin',
     },
 }))
 
@@ -40,7 +40,7 @@ const useStyles = makeStyles(createStyles({
 // 5. marker clustering
 
 export const App = () => {
-    const [viewState, setViewState] = useState<ViewState>(INITIAL_VIEW)
+    const [viewState, setViewState] = useState<MapViewState>(INITIAL_VIEW)
     const mapRef = useRef<InteractiveMap>(null)
     const classes = useStyles()
     const [latest, setLatest] = useState<Date | undefined>()
