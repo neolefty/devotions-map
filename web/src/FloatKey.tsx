@@ -6,7 +6,7 @@ const useStyles = makeStyles(theme => createStyles({
         background: 'rgba(30, 40, 120, 0.8)',
         border: '1px solid rgba(45, 60, 180, 0.7)',
         position: 'fixed',
-        bottom: '20px',
+        bottom: '40px',
         right: 0,
         maxWidth: '35vw',
         fontSize: '17px',
