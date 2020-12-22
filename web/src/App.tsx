@@ -84,15 +84,19 @@ const LastUpdated = (props: LastUpdatedProps) => {
     const devotions = useDevotions()
     return (
         <>
-            <p>Stars represent {devotions?.length} households<br/>with <a href="https://www.bahai.org/action/devotional-life/">devotional gatherings</a></p>
             <p>
+                Stars represent {devotions?.length} households<br/>
+                with <a href="https://www.bahai.org/action/devotional-life/">devotional gatherings</a>.
                 {props.latest &&
                     <>
-                        <span>Most recent: {format(props.latest, 'M/d/yyyy')}</span>
                         <br/>
+                        Most recent: {format(props.latest, 'M/d/yyyy')}.
                     </>
                 }
-                <a href="https://midwestbahai.org/devotions-points-of-light/#form">Add yours here</a>
+            </p>
+            <p>
+                Official statistics report 237<br/>
+                — <a href="https://midwestbahai.org/devotions-points-of-light/#form">add yours to the map</a>
             </p>
         </>
     )
