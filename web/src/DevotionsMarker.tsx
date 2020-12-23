@@ -33,7 +33,6 @@ export const DevotionsMarker = (
         <Marker
             latitude={descriptions[0].lat} longitude={descriptions[0].lng}
             offsetLeft={style.width * -0.5} offsetTop={style.height * -0.5}
-            // offsetLeft={-17.5} offsetTop={-30}
         >
             <NineStar
                 {...style}
