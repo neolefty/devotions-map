@@ -6,6 +6,7 @@ interface DevotionsDescriptionJson {
     lng: string
     description: string
     city: string
+    state: string
     place: string
     timestamp: string
 }
@@ -15,7 +16,8 @@ const JSON_PLACEHOLDER: DevotionsDescriptionJson = {
     lat: '45',
     lng: '-85',
     description: 'Fake Devotions Description',
-    city: 'City, State',
+    city: 'City',
+    state: 'State',
     place: 'City, State 12345, United States',
     timestamp: '6/14/2020 22:42:10',
 }
@@ -25,6 +27,7 @@ export class DevotionsDescription {
 
     get zip(): string {return this.json.zip}
     get city(): string {return this.json.city}
+    get state(): string {return this.json.state}
 
     get description(): string {
         return this.json.description

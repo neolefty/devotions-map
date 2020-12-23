@@ -1,43 +1,62 @@
 import React, {useCallback, useLayoutEffect, useMemo} from "react"
+import {isMobile} from "react-device-detect"
 import {Marker} from "react-map-gl"
-import {AtLeastOne} from "./AtLeastOne"
-import {DevotionsDescription} from "./DevotionsDescription"
+import {DevotionsGroup} from "./DevotionsGroup"
 import {NineStar} from "./NineStar"
 import {useHover} from "./useHover"
 
 interface DevotionsMarkerProps {
-    descriptions: AtLeastOne<DevotionsDescription>
-    selection?: AtLeastOne<DevotionsDescription>
-    setSelection: (description?: AtLeastOne<DevotionsDescription>) => void
+    group: DevotionsGroup
+    selection?: DevotionsGroup
+    setSelection: (description?: DevotionsGroup) => void
 }
 
-const WIDTH_BASE = 20
-const HEIGHT_BASE = 20
+const RADIUS_BASE = 20
+// const WIDTH_BASE = 20
+// const HEIGHT_BASE = 20
+
+export const starRadiusPixels = (numGatherings: number) =>
+    Math.log1p(numGatherings + 1.7) * RADIUS_BASE
+// export const starRadiusPixels = (numGatherings: number) =>
+//     Math.log1p(numGatherings + 1.7) * 0.5 * (WIDTH_BASE + HEIGHT_BASE)
+
+// a reasonable upper bound
+export const RADIUS_50 = starRadiusPixels(50)
 
 export const DevotionsMarker = (
-    {descriptions, selection, setSelection}: DevotionsMarkerProps
+    {group, selection, setSelection}: DevotionsMarkerProps
 ) => {
     const {ref, hover} = useHover<SVGSVGElement>()
-    const handleSelect = useCallback(() => setSelection(descriptions), [descriptions, setSelection])
+
+    const handleToggle = useCallback(() =>
+        setSelection(group === selection ? undefined : group)
+    , [group, selection, setSelection])
+
     const style = useMemo(() => {
-        const multiplier = Math.log1p(descriptions.length + 1.7)
-        return {width: WIDTH_BASE * multiplier, height: HEIGHT_BASE * multiplier}
-    }, [descriptions])
+        const r = starRadiusPixels(group.size)
+        return {width: r, height: r}
+        // const multiplier = Math.log1p(group.size + 1.7)
+        // return {width: WIDTH_BASE * multiplier, height: HEIGHT_BASE * multiplier}
+    }, [group])
+
     useLayoutEffect(() => {
-        if (hover && selection !== descriptions)
-            setSelection(descriptions)
-        if (!hover && selection === descriptions)
-            setSelection(undefined)
-    }, [hover, selection, setSelection, descriptions])
+        if (!isMobile) {
+            if (hover && selection !== group)
+                setSelection(group)
+            if (!hover && selection === group)
+                setSelection(undefined)
+        }
+    }, [hover, selection, setSelection, group])
+
     return (
         <Marker
-            latitude={descriptions[0].lat} longitude={descriptions[0].lng}
+            latitude={group.lat} longitude={group.lng}
             offsetLeft={style.width * -0.5} offsetTop={style.height * -0.5}
         >
             <NineStar
                 {...style}
                 forwardRef={ref}
-                onClick={handleSelect}
+                onClick={handleToggle}
                 rings={[
                     // {valleyRadius: 0.1, pointRadius: 0.2, strokeWidth: 0.05, stroke: "rgba(250,220,30,0.4)"}, // width/height 120
                     {pointRadius: 1, valleyRadius: 0.7, fill: "rgba(250,220,30,0.7)"},

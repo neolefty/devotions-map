@@ -1,7 +1,7 @@
-export const GetEnvConfig = (): EnvConfig => window.config
+import {GetEnvConfig} from "./GetEnvConfig"
 
 export class Config {
-    public static readonly mapboxToken = GetEnvConfig().mapboxToken
-    public static readonly mapboxStyleUrl = GetEnvConfig().mapboxStyleUrl
-    public static readonly region = GetEnvConfig().region
+    static readonly mapboxToken = GetEnvConfig().mapboxToken
+    static readonly mapboxStyleUrl = GetEnvConfig().mapboxStyleUrl
+    static readonly region = GetEnvConfig().region
 }

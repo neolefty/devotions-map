@@ -1,11 +1,11 @@
 import {createStyles, makeStyles} from "@material-ui/styles"
-import React, {useCallback, useEffect, useMemo, useState} from "react"
+import React, {useCallback, useEffect, useLayoutEffect, useMemo, useState} from "react"
 import {Popup} from "react-map-gl"
 import {useMap} from "./App"
-import {AtLeastOne} from "./AtLeastOne"
 import {DevotionsDescription} from "./DevotionsDescription"
+import {DevotionsGroup} from "./DevotionsGroup"
 import {DevotionsMarker} from "./DevotionsMarker"
-import {useDevotionsAggregate} from "./useDevotions"
+import {useDevotionsGrouped} from "./useDevotions"
 
 const showParticipantCount = false
 
@@ -31,19 +31,23 @@ const byZip = (description: DevotionsDescription) => description.zip
 export const DevotionsMarkers = () => {
     const classes = useStyles()
 
-    const [selection, setSelection] = useState<AtLeastOne<DevotionsDescription> | undefined>(undefined)
+    const [selection, setSelection] = useState<DevotionsGroup | undefined>(undefined)
     const handleClearSelection = useCallback(() => setSelection(undefined), [])
 
     const map = useMap()
     const bounds = map?.getMap().getBounds()
+    const zoom = map?.getMap().getZoom()
 
-    const groups = useDevotionsAggregate(byZip)
-    const visibleGroups = useMemo<AtLeastOne<DevotionsDescription>[]>(() => {
+    // when zoom changes, un-select
+    useLayoutEffect(() => setSelection(undefined), [zoom])
+
+    const groups = useDevotionsGrouped(byZip, zoom ?? 6)
+    const visibleGroups = useMemo<ReadonlyArray<DevotionsGroup>>(() => {
         if (!bounds) return []
         return groups?.filter(group => {
-            const first = group[0]
-            return first.lat > bounds.getSouth() && first.lng > bounds.getWest()
-                && first.lat < bounds.getNorth() && first.lng < bounds.getEast()
+            const lat = group.lat, lng = group.lng
+            return lat > bounds.getSouth() && lng > bounds.getWest()
+                && lat < bounds.getNorth() && lng < bounds.getEast()
         })
     }, [bounds, groups])
 
@@ -57,7 +61,7 @@ export const DevotionsMarkers = () => {
             {visibleGroups?.map((descriptions, i) =>
                 <DevotionsMarker
                     key={i}
-                    descriptions={descriptions}
+                    group={descriptions}
                     selection={selection}
                     setSelection={setSelection}
                 />
@@ -65,7 +69,7 @@ export const DevotionsMarkers = () => {
             {selection &&
                 <Popup
                     anchor="bottom"
-                    latitude={selection[0].lat} longitude={selection[0].lng}
+                    latitude={selection.lat} longitude={selection.lng}
                     offsetTop={-15} offsetLeft={0}
                     closeButton={false}
                     onClose={handleClearSelection}
@@ -73,18 +77,18 @@ export const DevotionsMarkers = () => {
                     className={classes.popup}
                 >
                     <div className='head'>
-                        {selection[0].city}
-                        {showParticipantCount && selection.length > 1 &&
-                            ` — ${selection.length} households`
+                        {selection.localityDescription}
+                        {showParticipantCount && selection.size > 1 &&
+                            ` — ${selection.size} households`
                         }
                     </div>
                     {!showParticipantCount &&
-                        <div>{selection.length} household{selection.length === 1 ? '' : 's'}</div>
+                        <div>{selection.size} household{selection.size === 1 ? '' : 's'}</div>
                     }
-                    {showParticipantCount && selection.map((description, i) =>
+                    {showParticipantCount && selection.devotions.map((description, i) =>
                         <div key={i}>{description.description}</div>
                     )}
-                    <div>Zip: {selection[0].zip}</div>
+                    <div>{selection.zipDescription()}</div>
                 </Popup>
             }
         </>

@@ -42,7 +42,13 @@ const vertex = (i: number, radius: number, precision: number = 3) => {
 
 export const NineStar = (props: NineStarProps) => {
     return (
-        <svg height={props.height} width={props.width} viewBox="-1 -1 2 2" ref={props.forwardRef}>
+        <svg
+            height={props.height}
+            width={props.width}
+            viewBox="-1 -1 2 2"
+            ref={props.forwardRef}
+            onClick={props.onClick}
+        >
             {props.rings.map((ring, i) =>
                 <path key={i} fill={ring.fill} stroke={ring.stroke} strokeWidth={ring.strokeWidth} d={`M${
                     NINE.map(j => `${vertex(j, ring.pointRadius)} ${vertex(j + 0.5, ring.valleyRadius)}`).join(' ')
