@@ -1,8 +1,7 @@
-import React, {useCallback, useEffect, useLayoutEffect, useMemo} from "react"
+import React, {useCallback, useLayoutEffect, useMemo} from "react"
 import {Marker} from "react-map-gl"
 import {AtLeastOne} from "./AtLeastOne"
 import {DevotionsDescription} from "./DevotionsDescription"
-import {isMobile} from "react-device-detect"
 import {NineStar} from "./NineStar"
 import {useHover} from "./useHover"
 
