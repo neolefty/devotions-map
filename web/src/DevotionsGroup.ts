@@ -22,7 +22,9 @@ export class DevotionsGroup {
         const states = this.states
         if (states.length > 1)
             return `${cities.length} cities in ${states.length} states`
-        else if (cities.length > 1)
+        else if (cities.length === 2)
+            return `${cities[0]} & ${cities[1]}`
+        else if (cities.length > 2)
             return `${cities.length} cities in ${this.first.state}`
         else
             return `${this.first.city}, ${this.first.state}`

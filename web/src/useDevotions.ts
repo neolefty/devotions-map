@@ -51,8 +51,10 @@ export const useDevotionsGrouped = (
                     // the real test — slightly more expensive than everything leading up to it
                     if (pixelDistance < RADIUS_50 + groupRadius) {
                         const joinRadius = starRadiusPixels(toJoin.size)
-                        // if the stars will overlap — that is, the distance between them is less than 0.8 * their added radius
-                        if (pixelDistance < (groupRadius + joinRadius) * 0.5)
+                        // if the stars will overlap — that is, the distance between them is less than 0.4 * their added radius
+                        // if (pixelDistance < (groupRadius + joinRadius) * 0.4)
+                        //     console.log(`—→ ${pixelDistance}px — joining ${group.localityDescription} into ${toJoin.localityDescription} ←—`)
+                        if (pixelDistance < (groupRadius + joinRadius) * 0.4)
                             // then group them
                             return true
                     }
@@ -67,7 +69,7 @@ export const useDevotionsGrouped = (
             else
                 result.push(group)
         })
-        console.log(`Group ${aggregated.length} groups at zoom ${zoomLevel} → ${result.length} bunches`)
+        console.debug(`Group ${aggregated.length} groups at zoom ${zoomLevel} → ${result.length} bunches`)
         return result
     }, [aggregated, zoomLevel])
 }
