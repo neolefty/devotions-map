@@ -1,13 +1,12 @@
-import React, {useCallback, useEffect, useMemo} from "react"
+import React, {useCallback, useEffect, useLayoutEffect, useMemo} from "react"
 import {Marker} from "react-map-gl"
 import {AtLeastOne} from "./AtLeastOne"
 import {DevotionsDescription} from "./DevotionsDescription"
-// import {ReactComponent as Flame} from "./flame.svg"
+import {isMobile} from "react-device-detect"
 import {NineStar} from "./NineStar"
 import {useHover} from "./useHover"
 
 interface DevotionsMarkerProps {
-    className?: string
     descriptions: AtLeastOne<DevotionsDescription>
     selection?: AtLeastOne<DevotionsDescription>
     setSelection: (description?: AtLeastOne<DevotionsDescription>) => void
@@ -17,7 +16,7 @@ const WIDTH_BASE = 20
 const HEIGHT_BASE = 20
 
 export const DevotionsMarker = (
-    {className, descriptions, selection, setSelection}: DevotionsMarkerProps
+    {descriptions, selection, setSelection}: DevotionsMarkerProps
 ) => {
     const {ref, hover} = useHover<SVGSVGElement>()
     const handleSelect = useCallback(() => setSelection(descriptions), [descriptions, setSelection])
@@ -25,9 +24,11 @@ export const DevotionsMarker = (
         const multiplier = Math.log1p(descriptions.length + 1.7)
         return {width: WIDTH_BASE * multiplier, height: HEIGHT_BASE * multiplier}
     }, [descriptions])
-    useEffect(() => {
+    useLayoutEffect(() => {
         if (hover && selection !== descriptions)
             setSelection(descriptions)
+        if (!hover && selection === descriptions)
+            setSelection(undefined)
     }, [hover, selection, setSelection, descriptions])
     return (
         <Marker
