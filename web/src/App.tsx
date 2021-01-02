@@ -41,10 +41,8 @@ const computeZoom = (windowSize: WidthHeight): number => {
 }
 
 // TODO -- see https://trello.com/b/5Rcw3uQv/devotions-map
-// 1. set initial zoom based on window size
-// 3. chevron on Quote box to show / hide explanation
-// 4. try out https://www.dafont.com/linux-libertine.font for quote
-// 5. marker clustering
+// 1. chevron on Quote box to show / hide explanation
+// 2. try out https://www.dafont.com/linux-libertine.font for quote
 
 export const App = () => {
     const windowSize = useWindowSize()
