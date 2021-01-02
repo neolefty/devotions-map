@@ -35,12 +35,9 @@ const useStyles = makeStyles(createStyles({
 }))
 
 const computeZoom = (windowSize: WidthHeight): number => {
-    // states shape is 1.37 taller than it is wide, so require more map height when figuring out fit
-    const min = Math.min(windowSize.width, windowSize.height / 1.37)
-    // Initial Zoom — 4.2 shows all three states; 4.5 cuts off edges a little; 4.0 leaves more blank space
-    const result = Math.log2(Math.min(windowSize.width, windowSize.height)) - 4.2
-    console.log(`min = ${min} / zoom = ${result}`)
-    return result
+    // Initial Zoom — subtracting 4 shows all three states; 3.7 cuts off edges a little
+    // Overall states shape is 1.37 taller than it is wide, so require more map height when figuring out fit.
+    return Math.log2(Math.min(windowSize.width, windowSize.height / 1.37)) - 3.85
 }
 
 // TODO -- see https://trello.com/b/5Rcw3uQv/devotions-map
