@@ -35,6 +35,7 @@ export const useDevotionsGrouped = (
     aggregate: (description: DevotionsDescription) => string,
     zoomLevel: number,
 ): ReadonlyArray<DevotionsGroup> => {
+    performance.mark('grouping')
     const aggregated = useDevotionsAggregate(aggregate)
     return useMemo<ReadonlyArray<DevotionsGroup>>(() => {
         const pxPerM = pixelsPerMeter(zoomLevel)
@@ -70,6 +71,10 @@ export const useDevotionsGrouped = (
                 result.push(group)
         })
         console.debug(`Group ${aggregated.length} groups at zoom ${zoomLevel} → ${result.length} bunches`)
+        performance.measure('from start of grouping', 'grouping')
+        console.debug(performance.getEntriesByType('measure'))
+        performance.clearMarks()
+        performance.clearMeasures()
         return result
     }, [aggregated, zoomLevel])
 }
