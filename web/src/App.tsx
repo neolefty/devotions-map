@@ -8,6 +8,7 @@ import {DevotionsMarkers} from "./DevotionsMarkers"
 import {FloatQuote} from "./FloatQuote"
 import {FloatKey} from "./FloatKey"
 import {useDevotions} from "./useDevotions"
+import {useWindowSize, WidthHeight} from "./useWindowSize"
 import {WithDevotions} from "./WithDevotions"
 
 const mid = (a: number, b: number) => 0.5 * (a + b)
@@ -33,6 +34,15 @@ const useStyles = makeStyles(createStyles({
     },
 }))
 
+const computeZoom = (windowSize: WidthHeight): number => {
+    // states shape is 1.37 taller than it is wide, so require more map height when figuring out fit
+    const min = Math.min(windowSize.width, windowSize.height / 1.37)
+    // Initial Zoom — 4.2 shows all three states; 4.5 cuts off edges a little; 4.0 leaves more blank space
+    const result = Math.log2(Math.min(windowSize.width, windowSize.height)) - 4.2
+    console.log(`min = ${min} / zoom = ${result}`)
+    return result
+}
+
 // TODO -- see https://trello.com/b/5Rcw3uQv/devotions-map
 // 1. set initial zoom based on window size
 // 3. chevron on Quote box to show / hide explanation
@@ -40,7 +50,11 @@ const useStyles = makeStyles(createStyles({
 // 5. marker clustering
 
 export const App = () => {
-    const [viewState, setViewState] = useState<MapViewState>(INITIAL_VIEW)
+    const windowSize = useWindowSize()
+    const [viewState, setViewState] = useState<MapViewState>({
+        ...INITIAL_VIEW,
+        zoom: computeZoom(windowSize)
+    })
     const mapRef = useRef<InteractiveMap>(null)
     const classes = useStyles()
     const [latest, setLatest] = useState<Date | undefined>()
