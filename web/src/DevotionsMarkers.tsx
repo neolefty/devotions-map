@@ -1,9 +1,9 @@
 import {createStyles, makeStyles} from "@material-ui/styles"
 import React, {useCallback, useEffect, useLayoutEffect, useMemo, useState} from "react"
 import {Popup} from "react-map-gl"
-import {useMap} from "./App"
 import {DevotionsDescription} from "./DevotionsDescription"
 import {DevotionsGroup} from "./DevotionsGroup"
+import {useMap} from "./DevotionsMap"
 import {DevotionsMarker} from "./DevotionsMarker"
 import {useDevotionsGrouped} from "./useDevotions"
 
