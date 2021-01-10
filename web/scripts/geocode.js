@@ -21,7 +21,6 @@ geo.setAccessToken(window.config.mapboxToken)
 //     if (geoData) console.log('Geolocation Data', geoData)
 // })
 
-
 const lookupZip = async (zip) => {
     return new Promise((resolve, reject) => {
         geo.geocode('mapbox.places', zip, bbox, (err, geoData) => {
