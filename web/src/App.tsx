@@ -1,49 +1,59 @@
+import {makeStyles} from "@material-ui/styles"
+// import firebase from "firebase"
 import firebase from "firebase/app"
-import React, {PropsWithChildren, useEffect, useReducer} from 'react'
-import {Config} from "./Config"
+import React, {useEffect, useMemo} from 'react'
+import {useAuthState} from "react-firebase-hooks/auth"
+// import {StyledFirebaseAuth} from "react-firebaseui"
 import {DevotionsMap} from "./DevotionsMap"
 import {InfoOverlay} from "./InfoOverlay"
 import {WithDevotions} from "./WithDevotions"
+import {useFirebaseApp, WithFirebaseApp} from "./WithFirebaseApp"
 
-// TODO -- see https://trello.com/b/5Rcw3uQv/devotions-map
+// TODO — see https://trello.com/b/5Rcw3uQv/devotions-map
 // 1. chevron on Quote box to show / hide explanation
 // 2. try out https://www.dafont.com/linux-libertine.font for quote
 
+// initialize styles
+const useStyles = makeStyles({})
+
 export const App = () => {
+    useStyles()
     return (
-        <WithFirebase>
+        <WithFirebaseApp>
             <WithDevotions>
                 <DevotionsMap/>
                 <InfoOverlay/>
+                <FirebaseSignin/>
             </WithDevotions>
-        </WithFirebase>
+        </WithFirebaseApp>
     )
 }
 
-interface FirebaseState {
-    app?: firebase.app.App
+const FirebaseSignin = () => {
+    const [user, loading, error] = useAuthState(firebase.auth())
+    return <div>Auth</div>
 }
 
-const FIREBASE_UNINITIALIZED: FirebaseState = {
-}
-
-const FirebaseReducer = (state: FirebaseState, action: Partial<FirebaseState>) => Object.freeze({
-    ...state,
-    ...action,
-})
-
-export const FirebaseContext = React.createContext<FirebaseState>(FIREBASE_UNINITIALIZED)
-
-export const WithFirebase = (props: PropsWithChildren<{}>) => {
-    const [firebaseState, dispatch] = useReducer(FirebaseReducer, FIREBASE_UNINITIALIZED)
-    useEffect(() => {
-        const firebaseApp: firebase.app.App = firebase.initializeApp(Config.firebaseConfig)
-        dispatch({app: firebaseApp})
-        console.log('firebase app:', firebaseApp)
-    }, [])
+/*
+const FirebaseSignin = () => {
+    const firebaseApp = useFirebaseApp()
+    const firebaseAuth = firebase.auth
+    const uiConfig = useMemo(() =>
+        firebaseAuth && {
+            signInFlow: 'popup',
+            signInSuccessUrl: '/signedIn',
+            signInOptions: [
+                firebaseAuth.GoogleAuthProvider.PROVIDER_ID,
+                firebaseAuth.FacebookAuthProvider.PROVIDER_ID,
+            ],
+        }
+    , [firebaseAuth])
+    useEffect(() => console.log('firebase.auth =', firebaseAuth), [firebaseAuth])
+    console.log('firebase.auth', firebase.auth, 'firebase.app.auth', firebaseApp.app?.auth)
     return (
-        <FirebaseContext.Provider value={firebaseState}>
-            {props.children}
-        </FirebaseContext.Provider>
+        <>{firebaseApp.app && firebase.auth &&
+            <StyledFirebaseAuth uiConfig={uiConfig} firebaseAuth={firebase.auth() /*firebaseApp.app.auth()}/>
+        }</>
     )
 }
+*/
